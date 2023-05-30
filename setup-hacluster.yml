@@ -11,7 +11,7 @@
         name: glusterfs-server
     - name: Start gluster service
       service:
-        name: glusterfs-server
+        name: glusterd
         state: started
     - name: Create brick directory
       file:
@@ -86,6 +86,8 @@
     #     msg: "You must define exactly one host in the hacluster-initial group!"
     - name: Initialize a docker swarm
       docker_swarm:
+       # since default eht0 is NAT interface and we need to switch to eth1 which is bridge
+       advertise_addr: eth1
        state: present
     - name: Parse and save the manager join token
       shell: docker swarm join-token -q manager
@@ -113,7 +115,8 @@
       register: docker_info
       changed_when: false
     - name: "Join the docker swarm"
-      shell: "docker swarm join --token {{ hostvars[groups['hacluster'][0]]['manager_token']['stdout'] }} {{ hostvars[groups['hacluster'][0]]['ansible_default_ipv4']['address'] }}:2377"
+      # since eht0 is NAT interface and we need to switch to eth1 which is bridge https://serverfault.com/a/978216
+      shell: "docker swarm join --token {{ hostvars[groups['hacluster'][0]]['manager_token']['stdout'] }} {{ hostvars[groups['hacluster'][0]]['ansible_eth1']['ipv4']['address'] }}:2377"
       when: docker_info.stdout.find("Swarm{{ ":" }} inactive") != -1
       retries: 3
       delay: 20

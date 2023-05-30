@@ -1,0 +1,4 @@
+[hacluster]
+192.168.0.86 ansible_connection=ssh ansible_ssh_user=vagrant ansible_ssh_private_key_file=/mnt/MargokPool/home/sup/code/HAHA/.vagrant/machines/ha1/virtualbox/private_key
+192.168.0.90 ansible_connection=ssh ansible_ssh_user=vagrant ansible_ssh_private_key_file=/mnt/MargokPool/home/sup/code/HAHA/.vagrant/machines/ha2/virtualbox/private_key
+192.168.0.102 ansible_connection=ssh ansible_ssh_user=vagrant ansible_ssh_private_key_file=/mnt/MargokPool/home/sup/code/HAHA/.vagrant/machines/ha3/virtualbox/private_key

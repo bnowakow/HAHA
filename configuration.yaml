@@ -14,7 +14,7 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 
 recorder:
-  db_url: mysql://user123:pass123@tasks.mariadbnode/homeassistant?charset=utf8
+  db_url: mysql://hacluster:pass123@tasks.mariadbnode/homeassistant?charset=utf8
 
 mqtt:
   broker: tasks.mosquitto
