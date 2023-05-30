@@ -8,4 +8,6 @@ mysql_password
 # bnowakow
 *.swp
 .vagrant/
+ansible_hosts
+docker-compose
 

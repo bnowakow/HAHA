@@ -34,8 +34,6 @@ Vagrant.configure("2") do |config|
         # https://superuser.com/a/984310
         #node.vm.network "public_network", bridge: "enp5s0f1", adapter: "1"
         node.vm.network "public_network", bridge: "enp5s0f1"
-        node.vm.network "forwarded_port", guest: 9000, host: 9000, auto_correct: true
-        node.vm.network "forwarded_port", guest: 8123, host: 8123, auto_correct: true
 
         node.vm.provider "virtualbox" do |vb|
             vb.memory = "2048"
@@ -64,10 +62,5 @@ Vagrant.configure("2") do |config|
     
     # for ansible scripts
     pip install docker
-
-    # DEBUG TODO
-    cd /vagrant
-    # https://serverfault.com/a/995314
-    # hostname --fqdn
   SHELL
 end
